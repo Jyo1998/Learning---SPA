@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   MenuItem,
   FormControl,
@@ -11,11 +11,11 @@ import {
 } from '@mui/material';
 
 // Sample data for countries, states, and cities
-const data = {
+const staticData = {
   countries: {
     USA: ['California', 'Florida', 'Texas'],
     Canada: ['Ontario', 'Telangana', 'TamilNadu'],
-    India: ['AndhraPradesh', 'Westbengal','Karnataka']
+    India: ['AndhraPradesh', 'Westbengal', 'Karnataka']
   },
   states: {
     California: ['Los Angeles', 'San Francisco', 'San Diego'],
@@ -24,80 +24,113 @@ const data = {
     Ontario: ['JerseyCity', 'Newyork', 'Colorado'],
     Telangana: ['Hyderabad', 'Gujarat', 'Bengal'],
     TamilNadu: ['Chennai', 'Madras', 'Nellore'],
-    AndhraPradesh: ['Guntur', 'Vijayawada','Goa'],
+    AndhraPradesh: ['Guntur', 'Vijayawada', 'Goa'],
     Westbengal: ['Kolkata', 'Paris', 'Scottland'],
-    Karnataka:['Bangalore', 'Mumbai']
+    Karnataka: ['Bangalore', 'Mumbai']
   }
 };
 
 const MultilevelDropdown = () => {
-  const [country, setCountry] = useState('');
-  const [state, setState] = useState('');
-  const [city, setCity] = useState('');
+  const [countries, setCountries] = useState([]);
+  const [states, setStates] = useState([]);
+  const [cities, setCities] = useState([]);
+  
+  const [selectedCountry, setSelectedCountry] = useState('');
+  const [selectedState, setSelectedState] = useState('');
+  const [selectedCity, setSelectedCity] = useState('');
+  
   const [errors, setErrors] = useState({ country: false, state: false, city: false });
   const [submittedData, setSubmittedData] = useState('');
 
-  // Handle country change
+  useEffect(() => {
+    // Set static countries data
+    setCountries(Object.keys(staticData.countries));
+  }, []);
+
+  useEffect(() => {
+    if (selectedCountry) {
+      setStates(staticData.countries[selectedCountry]);
+    } else {
+      setStates([]);
+    }
+    setSelectedState('');
+    setSelectedCity('');
+  }, [selectedCountry]);
+
+  useEffect(() => {
+    if (selectedState) {
+      setCities(staticData.states[selectedState]);
+    } else {
+      setCities([]);
+    }
+    setSelectedCity('');
+  }, [selectedState]);
+
   const handleCountryChange = (event) => {
-    setCountry(event.target.value);
-    setState('');
-    setCity('');
-    setErrors({ ...errors, country: false });
-  };
+    setSelectedCountry(event.target.value)
+  }
 
-  // Handle state change
   const handleStateChange = (event) => {
-    setState(event.target.value);
-    setCity('');
-    setErrors({ ...errors, state: false });
-  };
+    setSelectedState(event.target.value)
+  }
 
-  // Handle city change
   const handleCityChange = (event) => {
-    setCity(event.target.value);
-    setErrors({ ...errors, city: false });
-  };
-
-  // Handle form submission
+     setSelectedCity(event.target.value)
+  }
+  
   const handleSubmit = () => {
-    if (!country || !state || !city) {
+    if (!selectedCountry || !selectedState || !selectedCity) {
       setErrors({
-        country: !country,
-        state: !state,
-        city: !city
+        country: !selectedCountry,
+        state: !selectedState,
+        city: !selectedCity
       });
       return;
     }
     // Submit logic
     setSubmittedData({
-        country,
-        state,
-        city
-    })
-    
+      country: selectedCountry,
+      state: selectedState,
+      city: selectedCity
+    });
   };
 
   return (
-    <Box p={2}>
-      {/* Country Dropdown */}
-      <FormControl error={errors.country}>
-        <InputLabel>Country</InputLabel>
-        <Select value={country} onChange={handleCountryChange}>
-          {Object.keys(data.countries).map((country) => (
-            <MenuItem key={country} value={country}>
-              {country}
-            </MenuItem>
-          ))}
-        </Select>
-        {errors.country && <FormHelperText>Please select a country</FormHelperText>}
-      </FormControl>
+    <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column" p={2}>
+      {/* Dropdown Container */}
+      <Box display="flex" flexDirection="column" alignItems="center" gap={2} width={300}>
+        
+        {/* Country Dropdown */}
+        <FormControl error={errors.country} fullWidth>
+          <InputLabel htmlFor="country">Country</InputLabel>
+          <Select 
+            id="country" 
+            value={selectedCountry} 
+            aria-label='country' 
+            onChange={handleCountryChange}
+          >
+            <MenuItem value="" disabled>Select a Country</MenuItem>
+            {countries.map((country) => (
+              <MenuItem key={country} value={country}>
+                {country}
+              </MenuItem>
+            ))}
+          </Select>
+          {errors.country && <FormHelperText>Please select a country</FormHelperText>}
+        </FormControl>
 
-      {/* State Dropdown */}
-      {country && (
-        <FormControl error={errors.state}>
-          <InputLabel>State</InputLabel>
-          <Select value={state} onChange={handleStateChange}>
-            {data.countries[country].map((state) => (
+        {/* State Dropdown */}
+        <FormControl error={errors.state} fullWidth>
+          <InputLabel htmlFor='state'>State</InputLabel>
+          <Select 
+            id="state" 
+            value={selectedState} 
+            aria-label="state" 
+            onChange={handleStateChange}
+            disabled={!selectedCountry}
+          >
+            <MenuItem value="" disabled>Select a State</MenuItem>
+            {states.map((state) => (
               <MenuItem key={state} value={state}>
                 {state}
               </MenuItem>
@@ -105,14 +138,19 @@ const MultilevelDropdown = () => {
           </Select>
           {errors.state && <FormHelperText>Please select a state</FormHelperText>}
         </FormControl>
-      )}
 
-      {/* City Dropdown  */}
-      {state && (
-        <FormControl error={errors.city}>
-          <InputLabel>City</InputLabel>
-          <Select value={city} onChange={handleCityChange}>
-            {data.states[state].map((city) => (
+        {/* City Dropdown */}
+        <FormControl error={errors.city} fullWidth>
+          <InputLabel htmlFor='city'>City</InputLabel>
+          <Select 
+            id="city" 
+            value={selectedCity} 
+            aria-label="city" 
+            onChange={handleCityChange}
+            disabled={!selectedState}
+          >
+            <MenuItem value="" disabled>Select a City</MenuItem>
+            {cities.map((city) => (
               <MenuItem key={city} value={city}>
                 {city}
               </MenuItem>
@@ -120,19 +158,36 @@ const MultilevelDropdown = () => {
           </Select>
           {errors.city && <FormHelperText>Please select a city</FormHelperText>}
         </FormControl>
-      )}
+      </Box>
 
       {/* Submit Button */}
-      <Button variant="contained" color="primary" onClick={handleSubmit}>
-        Submit
-      </Button>
+      <Box mt={2}>
+        <Button 
+          variant="contained" 
+          color="primary" 
+          onClick={handleSubmit}
+          disabled={!selectedCountry || !selectedState || !selectedCity}
+        >
+          Submit
+        </Button>
+      </Box>
 
-      {/*Submitted Data */}
+      {/* Error Message */}
+      {(!selectedCountry || !selectedState || !selectedCity) && (
+        <Box mt={2}>
+          <Typography variant="body1" color="error">
+            Please select all the fields
+          </Typography>
+        </Box>
+      )}
+
+      {/* Submitted Data */}
       {submittedData && (
-        <Typography variant = 'h6'>
-            You have selected Country :{submittedData.country} , state: {submittedData.state} and city: {submittedData.city}
-              </Typography>
-
+        <Box mt={2}>
+          <Typography variant='h6'>
+            You have selected Country: {submittedData.country}, State: {submittedData.state}, and City: {submittedData.city}
+          </Typography>
+        </Box>
       )}
     </Box>
   );
