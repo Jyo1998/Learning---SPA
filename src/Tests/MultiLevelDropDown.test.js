@@ -2,30 +2,39 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import MultilevelDropdown from '../components/MultiLevelDropDown';
 
-test('disables state and city dropdowns initially', () => {
-  render(<MultilevelDropdown />);
-  const stateDropdown = screen.getByLabelText(/state/i);
+
+
+//this is a test used to check initially whether the dropdowns disabled or not
+test('disables state and city dropdowns initially', () => { //here is an initial argument
+  render(<MultilevelDropdown />); //renders the component in a virtual dom which is necessary for testing as it sets up a component that allows to interact and query it
+  const stateDropdown = screen.getByLabelText(/state/i); //used to find the elements by their accessible name and case insensitive as we used /i/
   const cityDropdown = screen.getByLabelText(/city/i);
-  expect(stateDropdown).toHaveClass('Mui-disabled');
-  expect(cityDropdown).toHaveClass('Mui-disabled');
+  expect(stateDropdown).toHaveClass('Mui-disabled'); //assertion checks whether the material ui component which indicates that element is disabled or not
+  expect(cityDropdown).toHaveClass('Mui-disabled');// if it is there it passes the test else it fails to disable the dropdown
 });
-// Test if the component renders correctly
+
+
+// Test if whether the component renders the drop down and submit button properly or not
 test('renders dropdowns and submit button', () => {
   render(<MultilevelDropdown />);
-  
   // Check if dropdowns and submit button are in the document
+  //If the element is found and present in the document, the assertion will pass.
+  // If not, it will fail, indicating that the country dropdown is not rendering correctly same for everything
   expect(screen.getByLabelText(/country/i)).toBeInTheDocument();
   expect(screen.getByLabelText(/state/i)).toBeInTheDocument();
   expect(screen.getByLabelText(/city/i)).toBeInTheDocument();
   expect(screen.getByText(/submit/i)).toBeInTheDocument();
+  //If the submit button with the text "submit" is found and present, the assertion will pass.
 });
 
+
+//Testing whether it shows an error message or not initially until the fields are selected
 test('initially shows error message if no fields are selected', () => {
   render(<MultilevelDropdown />);
-  
   // Ensure the error message is visible if no fields are selected
-  expect(screen.getByText(/please select all the fields/i)).toBeInTheDocument();
+  expect(screen.getByText(/please select all the fields/i)).toBeInTheDocument();//used to find elements based on their text content
 });
+
 
 // Test if the state dropdown is enabled when a country is selected
 test('enables state dropdown when a country is selected', () => {
@@ -45,6 +54,8 @@ test('enables state dropdown when a country is selected', () => {
   const stateDropdown = screen.getByLabelText(/state/i);
   expect(stateDropdown).not.toBeDisabled();
 });
+
+
 // Test if the city dropdown is enabled when a state is selected
 test('enables city dropdown when a state is selected', () => {
   // Create a mock component to simulate the country selection
@@ -93,10 +104,6 @@ test('submit button is disabled when not all fields are selected', () => {
   const submitButton = screen.getByText(/submit/i);
   expect(submitButton).toBeDisabled();
 });
-
-
-
-
 
 
 // Define handleSubmit outside the component to avoid it being a dependency
