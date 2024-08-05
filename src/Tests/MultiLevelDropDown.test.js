@@ -6,7 +6,7 @@ import MultilevelDropdown from '../components/MultiLevelDropDown';
 
 //this is a test used to check initially whether the dropdowns disabled or not
 test('disables state and city dropdowns initially', () => { //here is an initial argument
-  render(<MultilevelDropdown />); //renders the component in a virtual dom which is necessary for testing as it sets up a component that allows to interact and query it
+  render(<MultilevelDropdown onAddressChange={() => { }} />); //renders the component in a virtual dom which is necessary for testing as it sets up a component that allows to interact and query it
   const stateDropdown = screen.getByLabelText(/state/i); //used to find the elements by their accessible name and case insensitive as we used /i/
   const cityDropdown = screen.getByLabelText(/city/i);
   expect(stateDropdown).toHaveClass('Mui-disabled'); //assertion checks whether the material ui component which indicates that element is disabled or not
@@ -16,7 +16,7 @@ test('disables state and city dropdowns initially', () => { //here is an initial
 
 // Test if whether the component renders the drop down and submit button properly or not
 test('renders dropdowns and submit button', () => {
-  render(<MultilevelDropdown />);
+  render(<MultilevelDropdown onAddressChange={()=> { }}/>);
   // Check if dropdowns and submit button are in the document
   //If the element is found and present in the document, the assertion will pass.
   // If not, it will fail, indicating that the country dropdown is not rendering correctly same for everything
@@ -30,7 +30,7 @@ test('renders dropdowns and submit button', () => {
 
 //Testing whether it shows an error message or not initially until the fields are selected
 test('initially shows error message if no fields are selected', () => {
-  render(<MultilevelDropdown />);
+  render(<MultilevelDropdown onAddressChange={() => {}}/>);
   // Ensure the error message is visible if no fields are selected
   expect(screen.getByText(/please select all the fields/i)).toBeInTheDocument();//used to find elements based on their text content
 });
@@ -38,7 +38,7 @@ test('initially shows error message if no fields are selected', () => {
 
 // Test if the state dropdown is enabled when a country is selected
 test('enables state dropdown when a country is selected', () => {
-  // Create a mock component to simulate the country selection
+  // Create a temporary component to simulate the country selection that uses react hooks
   const MockComponent = () => {
     const [selectedCountry, setSelectedCountry] = React.useState('');
 
@@ -46,7 +46,7 @@ test('enables state dropdown when a country is selected', () => {
       setSelectedCountry('USA');
     }, []);
 
-    return <MultilevelDropdown selectedCountry={selectedCountry} />;
+    return <MultilevelDropdown selectedCountry={selectedCountry} onAddressChange={() => {}} />;
   };
 
   render(<MockComponent />);
@@ -66,7 +66,7 @@ test('enables city dropdown when a state is selected', () => {
       setSelectedState('California');
     }, []);
 
-    return <MultilevelDropdown selectedState={selectedState} />;
+    return <MultilevelDropdown selectedState={selectedState} onAddressChange={()=> {}} />;
   };
 
   render(<MockComponent />);
@@ -94,6 +94,7 @@ test('submit button is disabled when not all fields are selected', () => {
         selectedCountry={selectedCountry}
         selectedState={selectedState}
         selectedCity={selectedCity}
+        onAddressChange={() => {}}
       />
     );
   };
@@ -130,6 +131,7 @@ const MockComponent = () => {
         selectedCountry={selectedCountry}
         selectedState={selectedState}
         selectedCity={selectedCity}
+        onAddressChange={() => {}}
       />
       {submittedData && (
         <div>
@@ -146,4 +148,4 @@ test('displays submitted data after form submission', () => {
   render(<MockComponent />);
 
   expect(screen.getByText(/You have selected Country: USA, State: California, and City: Los Angeles/i)).toBeInTheDocument();
-});
+}); 
