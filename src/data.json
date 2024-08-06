@@ -1,0 +1,282 @@
+{
+    "data" : [
+        {
+            "country": "USA",
+            "state": "California",
+            "city": "Los Angeles",
+            "places": [
+            { "name": "Hollywood", "ranking": 1 },
+            { "name": "Santa Monica Pier", "ranking": 2 },
+            { "name": "Griffith Observatory", "ranking": 3 },
+            { "name": "Venice Beach", "ranking": 4 },
+            { "name": "The Getty Center", "ranking": 5 }
+            ]
+        },
+        {
+            "country": "USA",
+            "state": "California",
+            "city": "San Francisco",
+            "places": [
+              { "name": "Golden Gate Bridge", "ranking": 1 },
+              { "name": "Alcatraz Island", "ranking": 2 },
+              { "name": "Fisherman's Wharf", "ranking": 3 },
+              { "name": "Chinatown", "ranking": 4 },
+              { "name": "Union Square", "ranking": 5 }
+            ]
+        },
+        {
+            "country":"USA",
+            "state":"California",
+            "city":"San Diego",
+            "places":[
+                { "name": "Lombard Street", "ranking": 1 },
+                { "name": "Golden Gate Park", "ranking": 7 },
+                { "name": "San Francisco Museum of Modern Art", "ranking": 8 },
+                { "name": "Palace of Fine Arts", "ranking": 9 },
+                { "name": "Ghirardelli Square", "ranking": 10 }
+            ]  
+        },
+        {
+            "country":"USA",
+            "state":"Florida",
+            "city":"Miami",
+            "places":[
+                { "name": "LACMA", "ranking": 1 },
+                { "name": "Universal Studios Hollywood", "ranking": 2 },
+                { "name": "Los Angeles County Museum of Art", "ranking": 3 },
+                { "name": "Rodeo Drive", "ranking": 4 },
+                { "name": "Disneyland", "ranking": 5 }
+            ]
+        },
+        {
+            "country":"USA",
+            "state":"Florida",
+            "city":"Orlando",
+            "places":[
+                { "name": "Statue of Liberty","ranking": 1 },
+                { "name": "Central Park","ranking": 2 }
+            ]
+        },
+        {
+            "country":"USA",
+            "state":"Florida",
+            "city":"Tampa",
+            "places":[
+                { "name": "Shibuya Crossing", "ranking": 1 },
+                { "name": "Tokyo Tower", "ranking": 2 }
+            ]
+        },
+        {
+            "country": "USA",
+            "state": "Texas",
+            "city": "Houston",
+            "places": [
+             { "name": "Space Center Houston", "ranking": 1 },
+             { "name": "Houston Zoo", "ranking": 2 },
+             { "name": "Museum of Fine Arts", "ranking": 3 },
+             { "name": "Minute Maid Park", "ranking": 4 }
+            ]
+        },
+        {
+            "country":"USA",
+            "state":"Texas",
+            "city":"Austin",
+            "places":[
+                { "name": "The Houston Museum of Natural Science", "ranking": 1 },
+                { "name": "Discovery Green", "ranking": 2 },
+                { "name": "Hermann Park", "ranking": 3 }
+            ]
+        },
+        {
+            "country":"USA",
+            "state":"Texas",
+            "city":"Dallas",
+            "places":[
+                { "name": "Downtown Aquarium", "ranking": 1 },
+                { "name": "Children's Museum Houston", "ranking": 2 },
+                { "name": "Galveston Island", "ranking": 3 }
+            ]
+        },
+        {
+            "country": "Canada",
+            "state": "Ontario",
+            "city": "Jersey City",
+            "places": [
+             { "name": "CN Tower", "ranking": 1 },
+             { "name": "Royal Ontario Museum", "ranking": 2 },
+             { "name": "Toronto Islands", "ranking": 3 }
+            ]
+        },
+        {
+            "country":"Canada",
+            "state":"Ontario",
+            "city":"Newyork",
+            "places":[
+                { "name": "Ripley's Aquarium of Canada", "ranking": 1 },
+                { "name": "St. Lawrence Market", "ranking": 2 },
+                { "name": "Art Gallery of Ontario", "ranking": 3 },
+                { "name": "Distillery District", "ranking": 4 }
+            ]
+        },
+        {
+            "country":"Canada",
+            "state":"Ontario",
+            "city":"Colorado",
+            "places":[
+                { "name": "Hockey Hall of Fame", "ranking": 1 },
+                { "name": "Eaton Centre", "ranking": 2 },
+                { "name": "High Park", "ranking": 3 }
+            ]
+        },
+        {
+            "country":"Canada",
+            "state":"Telangana",
+            "city":"Hyderabad",
+            "places":[
+                { "name": "Charminar", "ranking": 1 },
+                { "name": "Golconda Fort", "ranking": 2 } 
+            ]
+        },
+        {
+            "country":"Canada",
+            "state":"Telangana",
+            "city":"Gujarat",
+            "places":[
+                { "name": "Eiffel Tower", "ranking": 1 },
+                { "name": "Louvre Museum", "ranking": 2 }
+            ]
+        },
+        {
+            "country":"Canada",
+            "state":"Telangana",
+            "city":"Bengal",
+            "places":[
+                { "name": "Ramoji Film City", "ranking": 3 },
+                { "name": "Hussain Sagar Lake", "ranking": 4 },
+                { "name": "Salar Jung Museum", "ranking": 1 },
+                { "name": "Birla Mandir", "ranking": 2 }
+            ]
+        },
+        {
+            "country":"Canada",
+            "state":"TamilNadu",
+            "city":"Chennai",
+            "places":[
+                { "name": "Qutub Shahi Tombs", "ranking": 1 },
+                { "name": "Nehru Zoological Park", "ranking": 2 },
+                { "name": "Shilparamam", "ranking": 3 },
+                { "name": "Lumbini Park", "ranking": 4 }
+            ]
+        },
+        {
+            "country":"Canada",
+            "state":"TamilNadu",
+            "city":"Madras",
+            "places":[
+                { "name": "Victoria Memorial", "ranking": 1 },
+                { "name": "Howrah Bridge", "ranking": 2 },
+                { "name": "Indian Museum", "ranking": 3 }
+            ]
+        },
+        {
+            "country":"Canada",
+            "state":"TamilNadu",
+            "city":"Nellore",
+            "places":[
+                { "name": "Marble Palace", "ranking": 1 },
+                { "name": "Kalighat Temple", "ranking": 2 },
+                { "name": "Dakshineswar Kali Temple", "ranking": 3 }
+            ]
+        },
+        {
+            "country":"India",
+            "state":"AndhraPradesh",
+            "city":"Guntur",
+            "places":[
+                { "name": "Eden Gardens", "ranking": 1 },
+                { "name": "Botanical Garden", "ranking": 2 },
+                { "name": "Science City", "ranking": 3 },
+                { "name": "New Market", "ranking": 4 }
+            ]
+        },
+        {
+            "country":"India",
+            "state":"AndhraPradesh",
+            "city":"Vijayawada",
+            "places":[
+                { "name": "Kanaka Durga Temple", "ranking": 1 },
+                { "name": "Prakasam Barrage", "ranking": 2 },
+                { "name": "Undavalli Caves", "ranking": 3 }
+            ]
+        },
+        {
+            "country":"India",
+            "state":"AndhraPradesh",
+            "city":"Goa",
+            "places":[
+                { "name": "Gandhi Hill", "ranking": 1 },
+                { "name": "Mangalagiri", "ranking": 2 },
+                { "name": "Kolleru Lake", "ranking": 3 }
+            ]
+        },
+        {
+            "country":"India",
+            "state":"Westbengal",
+            "city":"Kolkata",
+            "places":[
+                { "name": "Rishikonda Beach", "ranking": 1 },
+                { "name": "Bhavani Island", "ranking": 2 },
+                { "name": "Akkanna Madanna Caves", "ranking": 3 },
+                { "name": "Bapu Museum", "ranking": 4 }
+            ]
+        },
+        {
+            "country":"India",
+            "state":"Westbengal",
+            "city":"Paris",
+            "places":[
+                { "name": "Baga Beach", "ranking": 1 },
+                { "name": "Anjuna Beach", "ranking": 2 },
+                { "name": "Calangute Beach", "ranking": 3 }
+            ]
+        },
+        {
+            "country":"India",
+            "state":"Westbengal",
+            "city":"Scottland",
+            "places":[
+                { "name": "Fort Aguada", "ranking": 1 },
+                { "name": "Dudhsagar Falls", "ranking": 2 },
+                { "name": "Basilica of Bom Jesus", "ranking": 3 },
+                { "name": "Se Cathedral", "ranking": 4 },
+                { "name": "Church of St. Cajetan", "ranking": 5 },
+                { "name": "Spice Plantations", "ranking": 6 },
+                { "name": "Miramar Beach", "ranking": 7 }
+            ]
+        },
+        {
+            "country": "India",
+            "state": "Karnataka",
+            "city": "Bangalore",
+            "places": [
+              { "name": "Lalbagh Botanical Garden", "ranking": 1 },
+              { "name": "Bangalore Palace", "ranking": 2 },
+              { "name": "Cubbon Park", "ranking": 3 },
+              { "name": "Vidhana Soudha", "ranking": 4 },
+              { "name": "Bannerghatta National Park", "ranking": 5 }
+            ]
+        },
+        {
+            "country":"India",
+            "state":"Karnataka",
+            "city":"Mumbai",
+            "places":[
+                { "name": "Tipu Sultan's Summer Palace", "ranking": 1 },
+                { "name": "Nandi Hills", "ranking": 2 },
+                { "name": "ISKCON Temple", "ranking": 3 },
+                { "name": "Ulsoor Lake", "ranking": 4 },
+                { "name": "Jawaharlal Nehru Planetarium", "ranking": 5 }
+            ]
+        }
+    ]
+}
