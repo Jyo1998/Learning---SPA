@@ -32,8 +32,9 @@ const data = {
   }
 };
 
-
-const MultilevelDropdown = () => {
+//Adding a prop (onAddressChange) to the multilevel dropdown as it informs the changes to the parent component 
+//our requirement- to show this data in the address field so this prop is used
+const MultilevelDropdown = ({onAddressChange}) => { 
   const [countries, setCountries] = useState([]); //holds an aray of countries that are defined in the data
   const [states, setStates] = useState([]); //holds the list of states based on selected country and it is cleared and updated based on selected country
   const [cities, setCities] = useState([]); //holds the list of cities based on selected state and it is cleared and updated based on selected state
@@ -45,6 +46,7 @@ const MultilevelDropdown = () => {
   const [errors, setErrors] = useState({ country: false, state: false, city: false }); // validation errors it throws the error if user is not selected any of the dropdown
   const [submittedData, setSubmittedData] = useState(''); //stores the submitted data 
 
+ 
   //useEffect is used for fetching of the data
   useEffect(() => {  //a callback function that is used for fetching the data and handling of events
     setCountries(Object.keys(data.countries));
@@ -74,16 +76,27 @@ const MultilevelDropdown = () => {
     // When the state changes, the previously selected city might not be relevant anymore. This ensures the city dropdown is cleared whenever the state changes.
   }, [selectedState]); // checks for whether the user changes the state or not.
 
+  useEffect(() => {
+    //the country, state and city which are selected needs to filter by boolean as it verifies whether the value is truthy or falsy
+    //join method is used as the data generated needs to be separated by, and it shows all the address in a single line 
+    const newAddress = [selectedCountry, selectedState, selectedCity].filter(Boolean).join(', '); 
+    onAddressChange(newAddress); //allows the parent component to receive and updates the address
+  }, [selectedCountry, selectedState, selectedCity, onAddressChange]);//it will run if any of these values have been changed
+
   const handleCountryChange = (event) => {  // event parameter represents event object passes a function when user interacts with the dropdown contains information about change events such as new value of the dropdown
     setSelectedCountry(event.target.value) //event.target.value: retrives the value of the selected option by updating the state variable selectedCountry
+    
   }
 
   const handleStateChange = (event) => {
     setSelectedState(event.target.value)//event.target.value: retrives the value of the selected option by updating the state variable selectedState
+    
   }
 
   const handleCityChange = (event) => {
      setSelectedCity(event.target.value)//event.target.value: retrives the value of the selected option by updating the state variable selectedCity
+    
+
   }
 
   const handleSubmit = () => {  //combines validation and data handling
