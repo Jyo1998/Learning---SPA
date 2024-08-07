@@ -30,10 +30,10 @@
             "city":"San Diego",
             "places":[
                 { "name": "Lombard Street", "ranking": 1 },
-                { "name": "Golden Gate Park", "ranking": 7 },
-                { "name": "San Francisco Museum of Modern Art", "ranking": 8 },
-                { "name": "Palace of Fine Arts", "ranking": 9 },
-                { "name": "Ghirardelli Square", "ranking": 10 }
+                { "name": "Golden Gate Park", "ranking": 2 },
+                { "name": "San Francisco Museum of Modern Art", "ranking": 3 },
+                { "name": "Palace of Fine Arts", "ranking": 4 },
+                { "name": "Ghirardelli Square", "ranking": 5 }
             ]  
         },
         {
