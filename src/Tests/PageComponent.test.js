@@ -11,6 +11,10 @@ import PageComponent from '../components/PageComponent';
     expect(screen.getByText('Multilevel dropdown')).toBeInTheDocument();
     expect(screen.getByText('Form data')).toBeInTheDocument();
     expect(screen.getByText('Tab-3')).toBeInTheDocument();
+    expect(screen.getByText('Data Tab')).toBeInTheDocument();
+    expect(screen.getByText('Payment Tab')).toBeInTheDocument();
+    
+    
  
   });
 
@@ -38,4 +42,26 @@ test('should render Tab3 content when selectedTab is 2', () => {
 
   // Assert that the content for Tab-3 is displayed
   expect(screen.getByText(/This is the contents for Tab-3/i)).toBeInTheDocument();
+});
+
+
+
+test('should render DataTab when selectedTab is 3', () => {
+  render(<PageComponent />);
+  
+  // Simulate selecting tab 3
+  fireEvent.click(screen.getByText('Data Tab'));
+
+  // Check if DataTab content is rendered
+  expect(screen.getByText(/places and rankings/i)).toBeInTheDocument();
+});
+
+test('should render PaymentTab when selectedTab is 4', () => {
+  render(<PageComponent />);
+  
+  // Simulate selecting tab 4
+  fireEvent.click(screen.getByText('Payment Tab'));
+
+  // Check if PaymentTab content is rendered
+  expect(screen.getByText(/payment information/i)).toBeInTheDocument();
 });
