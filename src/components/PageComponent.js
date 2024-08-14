@@ -10,7 +10,7 @@ const PageComponent = () => {
   const [selectedTab, setSelectedTab] = useState(0);//the first tab will be selected by default as there are multiple tabs
   //setSelectedTab is the updater function that allows the user to change the value of selectedTab.
   const [address, setAddress] = useState('');//setAddress updates the state of address whenever the user changes it
-  const [successMessage, setSuccessMessage] = useState('');
+  //const [successMessage, setSuccessMessage] = useState('');
   const [formData, setFormData] = useState({}); // Store form data
 
 
@@ -25,7 +25,7 @@ const PageComponent = () => {
 
   const handleFormSubmit = (formData) => { //represents the data from the form that is being submitted.
     setFormData(formData); // store the form data
-    setSuccessMessage('Form has been submitted successfully'); //state updater that modifies the successMessage state variable, which likely provides feedback to the user.
+    //setSuccessMessage('Form has been submitted successfully'); //state updater that modifies the successMessage state variable, which likely provides feedback to the user.
     // Navigate to Tab-3 after form submission
     setSelectedTab(2);
 
@@ -36,7 +36,9 @@ const PageComponent = () => {
     <Box>
      <AppBar position='static'> 
       {/*used for displaying set of tabs */}
-        <Tabs textColor= { 'inherit'} value={selectedTab} onChange={handleTabChange}>
+        <Tabs textColor= { 'inherit'} 
+         value={selectedTab} 
+          onChange={handleTabChange}>
          <Tab label="Multilevel dropdown" /> {/*tab-1 name as it renders the multi level drop down component*/}
          <Tab label="Form data" /> {/*tab-2 name as it renders the form data */}
          <Tab label="Tab-3" />
@@ -58,7 +60,7 @@ const PageComponent = () => {
         <Tab3 />
       )}
     </Box>
-     {successMessage && <div className="success-message">{successMessage}</div>}
+     {/*{successMessage && <div className="success-message">{successMessage}</div>}*/}
      {selectedTab === 3 && (
       <Box p={2}>
        <DataTab selectedAddress={address} onTabChange={handleTabChange} />
