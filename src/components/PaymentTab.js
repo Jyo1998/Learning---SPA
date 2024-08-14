@@ -11,8 +11,38 @@ const PaymentTab = ({ formData }) => { //it takes form data as a prop the data w
     cardNumber: ''
   });
 
+  const [errors, setErrors] = useState({
+    cardNumber: '',
+    
+  });
+
+  // Helper functions for validation
+    //^4: Ensures the card number starts with the digit 4.
+  // \d{12}: Ensures there are exactly 12 digits after the starting 4. 
+  //(\d{3})?: Optionally allows an additional 3 digits, which makes it valid for both 13-digit (basic Visa) and 16-digit (extended Visa) formats.
+  //$: Ensures that the string ends here, making the entire card number exactly 13 or 16 digits long.
+  //.test(cleanNumber): Tests if the cleanNumber matches the regular expression 
+
+const validateCardNumber = (cardNumber, cardType) => { //stores the cleaned card number.
+  const cleanNumber = cardNumber.replace(/\s+/g, ''); // Remove any spaces
+
+  switch(cardType) { 
+    case 'Visa':
+      return /^4\d{12}(\d{3})?$/.test(cleanNumber); // 13 or 16 digits
+    case 'MasterCard':
+      return /^5\d{15}$/.test(cleanNumber); // 16 digits
+    case 'American Express':
+      return /^3[47]\d{13}$/.test(cleanNumber); // 15 digits
+    case 'Discover':
+      return /^6\d{15}$/.test(cleanNumber); // 16 digits
+    default:
+      return false;
+  }
+};
+
   //Runs this effect only when form data is changed
   useEffect(() => {
+    console.log('9')
     if (formData) { //updates the payment tab whenever there is a change in form data
       setPaymentData(prevData => ({ //used to access the previous data
         ...prevData,
@@ -32,16 +62,19 @@ const PaymentTab = ({ formData }) => { //it takes form data as a prop the data w
   };
 
   // Check if all fields are filled
-  const isFormValid = Object.values(paymentData).every(value => value !== '');
+  const isFormValid = Object.values(paymentData).every(value => value !== '') &&  !errors.cardNumber;
   //object.values(paymentData) retrives the data from the payment data
   //every method checks whether all the elements filled or empty
 
   const handleSubmit = (event) => { //event object is triggered when a form is submitted via by clicking the submit button
     event.preventDefault(); //prevents the default behavior of the form submission
     // Handle the form submission
+     // Validate card number
+     if (!validateCardNumber(paymentData.cardNumber, paymentData.cardType)) {
+      setErrors({ ...errors, cardNumber: 'Invalid card number for the selected card type' });
+      return;
+    }
   };
-
-  
 
   return (
     <Box p={2}>
@@ -63,6 +96,8 @@ const PaymentTab = ({ formData }) => { //it takes form data as a prop the data w
           onChange={handleChange}
           fullWidth
           margin="normal"
+          error={!!errors.cardNumber}
+          helperText={errors.cardNumber}
         />
         <TextField
           label="Card Type"
@@ -87,13 +122,13 @@ const PaymentTab = ({ formData }) => { //it takes form data as a prop the data w
           margin="normal"
         />
         <TextField
-          label="Expiry Date (MM/YYYY)"
+          label="Expiry Date (MM/YY)"
           name="expiryDate"
           value={paymentData.expiryDate}
           onChange={handleChange}
           fullWidth
           margin="normal"
-          placeholder='MM/YYYY'
+          placeholder='MM/YY'
         />
         <TextField
           label="Billing Address"
