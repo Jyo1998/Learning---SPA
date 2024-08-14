@@ -38,45 +38,35 @@ const MultilevelDropdown = ({onAddressChange}) => {
   const [countries, setCountries] = useState([]); //holds an aray of countries that are defined in the data
   const [states, setStates] = useState([]); //holds the list of states based on selected country and it is cleared and updated based on selected country
   const [cities, setCities] = useState([]); //holds the list of cities based on selected state and it is cleared and updated based on selected state
-  
   const [selectedCountry, setSelectedCountry] = useState(''); //holds currently selected country. If the user changes the country it triggers and updates state and city dropdown
   const [selectedState, setSelectedState] = useState(''); //holds currently selected state. If the user changes the state it triggers and updates city dropdown
   const [selectedCity, setSelectedCity] = useState(''); //holds currently selected city. If the user changes the city it triggers and shows the final selection in the submitted data
   
   const [errors, setErrors] = useState({ country: false, state: false, city: false }); // validation errors it throws the error if user is not selected any of the dropdown
-  const [submittedData, setSubmittedData] = useState(''); //stores the submitted data 
-
- 
-  //useEffect is used for fetching of the data
-  useEffect(() => {  //a callback function that is used for fetching the data and handling of events
+  const [submittedData, setSubmittedData] = useState(null); //stores the submitted data
+  
+  
+  useEffect(() => {
     setCountries(Object.keys(data.countries));
-    // object.keys returns the array of keys from data.countries from the countries list
-    // setCountries - created by useState hook for the updating the state with array of countries names
-  }, []); // empty dependency array runs only once after initial render of the components
- //Initial State:No country, state, or city is selected. 
-  useEffect(() => {
-    if (selectedCountry) {   //country is selected it retrieves the list of states from the selected country
-      setStates(data.countries[selectedCountry]);
-    } else {
-      setStates([]); //no states are available when no country is selected
-    }
-    setSelectedState(''); //Resets the selectedState to an empty string.
-    //When the country changes, the previously selected state might not be relevant anymore. This ensures the state dropdown is cleared whenever the country changes.
-    setSelectedCity(''); // Resets the selectedCity to an empty string.
-    // When the state changes, the previously selected city might not be relevant anymore. This ensures the city dropdown is cleared whenever the state changes.
-  }, [selectedCountry]); //checks for whether the user changes the country or not
 
-  useEffect(() => {  // manage the cities based on state selection
-    if (selectedState) {  // checks whether state is selected or not. if selected it renders the next line
-      setCities(data.states[selectedState]); //state which is selected it retrives the list of cities from the selected state
-    } else {
-      setCities([]); //no cities are available when no state is selected
+    // Determine states and cities based on selected country and state
+    const newStates = selectedCountry ? data.countries[selectedCountry] : [];
+    const newCities = selectedState ? data.states[selectedState] : [];
+  
+    // Update state lists and reset selections if necessary
+    setStates(newStates);
+    setCities(newCities);
+  
+    // Reset selected state and city when country or state changes
+    if (!selectedCountry) {
+      setSelectedState('');
+      setSelectedCity('');
+    } else if (!selectedState) {
+      setSelectedCity('');
     }
-    setSelectedCity(''); //Resets the selectedCity to an empty string
-    // When the state changes, the previously selected city might not be relevant anymore. This ensures the city dropdown is cleared whenever the state changes.
-  }, [selectedState]); // checks for whether the user changes the state or not.
+  
 
-  useEffect(() => {
+    console.log('4')
     //the country, state and city which are selected needs to filter by boolean as it verifies whether the value is truthy or falsy
     //join method is used as the data generated needs to be separated by, and it shows all the address in a single line 
     const newAddress = [selectedCountry, selectedState, selectedCity].filter(Boolean).join(', '); 
