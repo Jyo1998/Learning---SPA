@@ -15,30 +15,19 @@ const DataTab = ({ selectedAddress, onTabChange }) => {
   useEffect(() => {
     const applyFilters = () => { //handle the filtering of data based on user selection
       const data = dataJson.data || [];// retrives data from data.json , if it isundefined or null it gives us an empty array 
+      const [selectedCountry, selectedState, selectedCity] = selectedAddress.split(', ');
       const filtered = data.filter(item => // filters the data array based on filter value
-        (!filterValue.country || item.country === filterValue.country) && //checks for country filter
+        ((!filterValue.country || item.country === filterValue.country)&& ((!selectedCountry || item.country === selectedCountry))) && //checks for country filter
 //If filterValue.country is not set (i.e., undefined or empty), the first part of the condition evaluates to true, meaning the filter is ignored. 
 //If it is set, it checks if the item's country matches the selected country.
-        (!filterValue.state || item.state === filterValue.state) && //checks for state filter
-        (!filterValue.city || item.city === filterValue.city) //checks for city filter
+        ((!filterValue.state || item.state === filterValue.state)&& ((!selectedState || item.state === selectedState))) && //checks for state filter
+        ((!filterValue.city || item.city === filterValue.city)&& ((!selectedCity || item.city === selectedCity))) //checks for city filter
       );
       setFilteredData(filtered);//updates the filtered state with new filtered array
     };
 
     applyFilters(); //whenever the filterValue changes it needs to call apply filters immediately
-  }, [filterValue]);
-
-  useEffect(() => {
-    const data = dataJson.data || [];
-    const [selectedCountry, selectedState, selectedCity] = selectedAddress.split(', ');// the address will be splitted based on','
-    const filtered = data.filter(item => //filters the data array based on selected country, selected state and selected city
-//if the selected country is not set - true otherwise it checks whether the item.country and selected country are equal or not
-      (!selectedCountry || item.country === selectedCountry) &&
-      (!selectedState || item.state === selectedState) &&
-      (!selectedCity || item.city === selectedCity)
-    );
-    setFilteredData(filtered); //updates the filtered data state
-  }, [selectedAddress]);//ensures that the data is filtered based on selected address
+  }, [filterValue, selectedAddress]);
 
   const handleFilterClick = (event, type) => { //handle the event when a filter option is selected
     //event - generates an object when the user clicks on the filter option
@@ -109,17 +98,17 @@ const DataTab = ({ selectedAddress, onTabChange }) => {
 
   return (
     <Box p={2}>
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h6" >
         Places and Rankings
       </Typography>
       <TableContainer component={Paper}>
         <Table>
-          <TableHead>
-            <TableRow>
+          <TableHead> 
+            <TableRow> 
               <TableCell>
                 Country
                 <IconButton onClick={(event) => handleFilterClick(event, 'country')}>
-                  <FilterListIcon />
+                  <FilterListIcon />{/*indicates that the column can be filtered */}
                 </IconButton>
               </TableCell>
               <TableCell>
