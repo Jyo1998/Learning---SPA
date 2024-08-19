@@ -1,0 +1,38 @@
+{
+    "group":[
+        {
+            "Companies":"ABC group",
+            "Lists":[
+                {"list":"Hazard List"},
+                {"list":"Hazard List 1"},
+                {"list": "Hazard List 2"},
+                {"list":"Hazard List 3"},
+                {"list":"Hazard List 4"}
+            ]
+        },
+        {
+            "Companies": "XYZ investment group",
+            "Lists":[
+                {"list":"Hazard List 5"},
+                {"list": "Hazard List 6"},
+                {"list": "Hazard List 7"}
+            ]
+        },
+        {
+            "Companies": "LLC model",
+            "Lists":[
+                {"list":"Hazard List 8"},
+                {"list":"Hazard List 9"},
+                {"list":"Hazard List 10"}
+            ]
+        },
+        {
+            "Companies": "Finance corp",
+            "Lists":[
+                {"list":"Hazard List A"},
+                {"list":"Hazard List B"},
+                {"list":"Hazard List C"}
+            ]
+        }
+    ]
+}
