@@ -6,7 +6,7 @@ import { Avatar,  IconButton } from "@mui/material";
 const ComparearrowTab = () => {
   const [showGroups, setShowGroups] = useState(false);
     
-    const groups = [
+    const Companies = [
         {id:1, name:'ABC group'},
         {id:2, name:'XYZ investment group'}, 
         {id:3, name:'LLC model'},
@@ -17,8 +17,8 @@ const ComparearrowTab = () => {
           setShowGroups(prevState => !prevState);
     };
 
-    const handleGroupClick = (group) => {
-      console.log('Group clicked:', group.name);
+    const handleGroupClick = (Companies) => {
+      console.log('Group clicked:', Companies.name);
       // Implement additional functionality here
     };
   return(
@@ -29,15 +29,15 @@ const ComparearrowTab = () => {
         </Avatar>
       </IconButton>
         {showGroups && (
-        <div className="groups-list">
-          {groups.map(group => (
+        <div className="Companies-list">
+          {Companies.map(Companies => (
            <div 
-            key={group.id} 
-            className="group-name"
-            onClick={() => handleGroupClick(group)}
+            key={Companies.id} 
+            className="Companies-name"
+            onClick={() => handleGroupClick(Companies)}
             style={{ cursor: 'pointer', padding: '8px', borderBottom: '1px solid #ccc' }}
            >
-           {group.name}
+           {Companies.name}
            </div>
           ))}
         </div>
