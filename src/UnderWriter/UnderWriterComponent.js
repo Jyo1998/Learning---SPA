@@ -7,6 +7,7 @@ import { Tabs, Tab,  AppBar, Typography, Toolbar } from '@mui/material';
 import GroupDropdown from "./GroupDropdown";
 import './Page.css';
 import LayersDropdown from "./Layers";
+import Location from "./Location";
 
 const UnderWriter = () => {
     const [selectedTab, setSelectedTab] = useState(0);
@@ -19,8 +20,9 @@ const UnderWriter = () => {
                 <Toolbar style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Typography  variant="h6" noWrap>
                      Guy Carpenter UnderWriter
-                     <GroupDropdown />
+                     
                      </Typography>
+                     <GroupDropdown />
 
 
                   <Tabs textColor= { 'primary'} 
@@ -38,7 +40,10 @@ const UnderWriter = () => {
                 
                 </Toolbar>
                 </AppBar>
+                <Toolbar style={{ display: 'flex', justifyContent: 'left'  }}>
                 <Tab icon ={<LayersDropdown/>} /> 
+                <Tab icon={<Location />} />
+                </Toolbar>
                 </div>
 
             
