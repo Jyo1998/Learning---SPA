@@ -6,6 +6,7 @@ import ComparearrowTab from "./comparearrowtab";
 import { Tabs, Tab,  AppBar, Typography, Toolbar } from '@mui/material';
 import GroupDropdown from "./GroupDropdown";
 import './Page.css';
+import LayersDropdown from "./Layers";
 
 const UnderWriter = () => {
     const [selectedTab, setSelectedTab] = useState(0);
@@ -13,7 +14,7 @@ const UnderWriter = () => {
         setSelectedTab(newValue); 
       };
     return(               
-                    
+               <div>     
               <AppBar position="static" color="default">
                 <Toolbar style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Typography  variant="h6" noWrap>
@@ -31,10 +32,15 @@ const UnderWriter = () => {
                   <Tab icon={<BookmarkTab />} />
                   <Tab icon={<ComparearrowTab />} />
                  </Tabs>
-
                  
+        
+     
+                
                 </Toolbar>
                 </AppBar>
+                <Tab icon ={<LayersDropdown/>} /> 
+                </div>
+
             
 
                 
