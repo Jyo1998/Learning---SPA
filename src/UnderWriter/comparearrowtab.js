@@ -1,48 +1,43 @@
-import React, { useState} from "react";
-import CompareArrowsIcon from '@mui/icons-material/CompareArrows'
-import { Avatar,  IconButton } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
+import { Avatar, IconButton } from "@mui/material";
+import groupData from './group.json';
 
 
-const ComparearrowTab = () => {
-  const [showGroups, setShowGroups] = useState(false);
-    
-    const Companies = [
-        {id:1, name:'ABC group'},
-        {id:2, name:'XYZ investment group'}, 
-        {id:3, name:'LLC model'},
-        {id:4, name:'Finance corp'}
-    ]
+const ComparearrowTab = ({ onCompanySelect }) => {
+  const [companies, setCompanies] = useState([]);
+  const [showCompanies, setShowCompanies] = useState(false);
 
-    const handleToggle = () =>{
-          setShowGroups(prevState => !prevState);
-    };
+  useEffect(() => {
+      setCompanies(groupData.companies);
+  }, []);
 
-    const handleGroupClick = (Companies) => {
-      console.log('Group clicked:', Companies.name);
-      // Implement additional functionality here
-    };
-  return(
+  const handleCompanyClick = (companyName) => {
+      onCompanySelect(companyName);
+  };
+
+  const toggleCompanyList = () => {
+      setShowCompanies(!showCompanies);
+  };
+
+  return (
     <div>
-      <IconButton onClick={handleToggle}>
+      <IconButton onClick={toggleCompanyList}>
         <Avatar>
-          <CompareArrowsIcon style={{marginLeft: '10px', fontsize:40 }}/>
+          <CompareArrowsIcon />
         </Avatar>
       </IconButton>
-        {showGroups && (
-        <div className="Companies-list">
-          {Companies.map(Companies => (
-           <div 
-            key={Companies.id} 
-            className="Companies-name"
-            onClick={() => handleGroupClick(Companies)}
-            style={{ cursor: 'pointer', padding: '8px', borderBottom: '1px solid #ccc' }}
-           >
-           {Companies.name}
-           </div>
+      {showCompanies && (
+       <div>
+          {companies.map((company, index) => (
+            <div key={index} onClick={() => handleCompanyClick(company.name)}>
+              {company.name}
+            </div>
           ))}
         </div>
-             )}
-      </div>
-  )
-}
+      )}
+    </div>
+  );
+};
+
 export default ComparearrowTab;
