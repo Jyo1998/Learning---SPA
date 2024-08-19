@@ -3,16 +3,22 @@ import Placetab from "./Placetab";
 import FormatNumberTab from "./Formatnumbertab";
 import BookmarkTab from "./Bookmarktab";
 import ComparearrowTab from "./comparearrowtab";
-import { Tabs, Tab,  AppBar, Typography, Toolbar } from '@mui/material';
+import { Tabs, Tab,  AppBar, Typography, Toolbar, Box  } from '@mui/material';
 import GroupDropdown from "./GroupDropdown";
 import './Page.css';
 import LayersDropdown from "./Layers";
 import Location from "./Location";
 
+
 const UnderWriter = () => {
     const [selectedTab, setSelectedTab] = useState(0);
+    const [selectedCompany, setSelectedCompany] = useState('');
+    
     const handleTabChange = (event, newValue) => { 
         setSelectedTab(newValue); 
+      };
+      const handleSelectCompany = (company) => {
+        setSelectedCompany(company);
       };
     return(               
                <div>     
@@ -22,17 +28,20 @@ const UnderWriter = () => {
                      Guy Carpenter UnderWriter
                      
                      </Typography>
-                     <GroupDropdown />
+                     
+                     <GroupDropdown selectedCompany={selectedCompany}/>
+                     
 
 
                   <Tabs textColor= { 'primary'} 
                   value={selectedTab}   
                   onChange={handleTabChange}
+                  indicatorColor="primary"
                   >
                   <Tab icon={<Placetab />} /> {/*tab-1 name as it renders the multi level drop down component*/}
                   <Tab icon={<FormatNumberTab />} /> {/*tab-2 name as it renders the form data */}
                   <Tab icon={<BookmarkTab />} />
-                  <Tab icon={<ComparearrowTab />} />
+                  <Tab icon={<ComparearrowTab onCompanySelect={handleSelectCompany}/>} />
                  </Tabs>
                  
         
@@ -40,10 +49,22 @@ const UnderWriter = () => {
                 
                 </Toolbar>
                 </AppBar>
-                <Toolbar style={{ display: 'flex', justifyContent: 'left'  }}>
-                <Tab icon ={<LayersDropdown/>} /> 
-                <Tab icon={<Location />} />
-                </Toolbar>
+                
+
+                <Box 
+                display="flex" 
+                flexDirection={'column'}
+                alignItems="flex-start" 
+                padding={2}
+            >
+                <Box marginBottom={2}>
+                  <Location /> 
+                    
+                </Box>
+                <Box>
+                  <LayersDropdown /> 
+                </Box>
+            </Box>
                 </div>
 
             
