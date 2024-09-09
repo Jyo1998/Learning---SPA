@@ -1,0 +1,53 @@
+/* Greyed out (disabled) icons */
+.icon-disabled {
+    color: grey;
+    pointer-events: none;
+    opacity: 0.5; /* Slightly faded */
+  }
+  
+  /* Flexbox layout to display items in a row */
+  .location-container {
+    text-align: center;
+    display: inline-block;
+    padding: 20px;
+  }
+  
+  /* Style for individual location items (icons, buttons) */
+  .location-item {
+    display: inline-block;
+    align-items: center;
+    padding: 0 10px;
+    margin-bottom: 10px;
+  }
+  
+  /* Full-width horizontal separator line for Single or Multi-location */
+  .full-horizontal-line {
+    width: 100%;
+    height: 2px;
+    background-color: #ccc;
+    margin: 10px 0;
+  }
+  
+  /* Horizontal separator line for buttons and icons */
+  .horizontal-separator {
+    width: 100%;
+    height: 1px;
+    background-color: #ccc;
+    margin: 10px 0;
+  }
+  
+  /* Flex row for icons */
+  .icon-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Vertical line between icons */
+  .vertical-separator {
+    width: 1px;
+    height: 40px;
+    background-color: #ccc;
+    margin: 0 10px;
+  }
+  
