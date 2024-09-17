@@ -6,7 +6,7 @@ const GroupDropdownTab = ({ selectedCompany }) => {
 
   useEffect(() => {
     if (selectedCompany) {
-      const company = groupData.companies.find(c => c.name === selectedCompany);
+      const company = groupData.companies.find(company => company.name === selectedCompany);
       const groups = company ? company.group : [];
       setFilteredGroups(groups);
     } else {
